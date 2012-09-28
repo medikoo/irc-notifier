@@ -1,16 +1,27 @@
 {
   "name": "irc-notifier",
   "version": "0.1.0",
-  "description": "Notifies about events happened to be on irc channel",
+  "description": "IRC email notifications (keywords/phrases mentions)",
   "main": "lib/irc-notifier.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": "",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:medikoo/irc-notifier.git"
+  },
+  "bugs": {
+    "email": "medikoo+irc-notifier@medikoo.com",
+    "url": "https://github.com/medikoo/irc-notifier/issues"
+  },
+  "engines": {
+    "node": ">=0.4"
+  },
   "keywords": [
     "irc",
     "email",
-    "notifications"
+    "notifications",
+    "watch"
   ],
   "author": "Mariusz Nowak",
   "dependencies": {
