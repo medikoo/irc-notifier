@@ -1,0 +1,5 @@
+.DS_Store
+/config.json
+/node_modules
+/.lintcache
+/npm-debug.log

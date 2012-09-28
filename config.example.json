@@ -1,0 +1,31 @@
+{
+	"smtp": {
+		"host": "localhost",
+		"auth": {
+			"user": "username",
+			"pass": "*****"
+		},
+		"from": "from@example.com",
+		"to": "to@example.com"
+	},
+	"irc": {
+		"irc.example.com": {
+			"user": "irc-notifier-bot]",
+			"channels": {
+				"foo": [
+					"notify",
+					"me",
+					"if",
+					"any",
+					"of",
+					"this",
+					"keywords",
+					"appear",
+					"in",
+					"a",
+					"message"
+				]
+			}
+		}
+	}
+}
