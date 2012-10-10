@@ -1,6 +1,6 @@
 {
   "name": "irc-notifier",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "IRC email notifications (keywords/phrases mentions)",
   "main": "lib/irc-notifier.js",
   "scripts": {

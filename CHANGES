@@ -1,2 +1,5 @@
+v0.1.1  --  2012.10.10
+Fix keyword contains check (now it actually works ;-)
+
 v0.1.0  --  2012.09.28
 Initial implementation
