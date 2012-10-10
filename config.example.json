@@ -10,7 +10,7 @@
 	},
 	"irc": {
 		"irc.example.com": {
-			"user": "irc-notifier-bot]",
+			"user": "irc-notifier-bot",
 			"channels": {
 				"foo": [
 					"notify",
