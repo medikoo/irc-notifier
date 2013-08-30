@@ -26,8 +26,8 @@
   "author": "Mariusz Nowak",
   "dependencies": {
     "es5-ext": "git://github.com/medikoo/es5-ext",
-    "irc": "~0.3.4",
-    "nodemailer": "~0.3.28"
+    "irc": "~0.3.6",
+    "nodemailer": "~0.5.2"
   },
   "license": "MIT",
   "scripts": {
