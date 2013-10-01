@@ -50,7 +50,7 @@ forEach(config.irc, function (conf, url) {
 			if (message.args[1] === ('#' + name)) {
 				// Rename
 				nu = message.args[2].slice(1);
-				console.log("Redirected", "#" + name, "to", "#" + nu);
+				console.log("Redirect", "#" + name, "to", "#" + nu);
 				client.removeListener('message#' + name, l);
 				name = nu;
 				client.addListener('message#' + name, l);
