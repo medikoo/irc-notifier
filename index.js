@@ -68,8 +68,8 @@ forEach(config.irc, function (conf, url) {
 			var needle, subject, body, messageContains, now = new Date();
 			console.log("#" + name, format.call(now) + " ", from, " => ",
 				message);
-			history.push([now, from, message, data]);
-			if (history.length > 20) history.shift();
+			history.unshift([now, from, message, data]);
+			if (history.length > 20) history.pop();
 			if (ignore[from]) return;
 			messageContains = contains.bind(message.toLowerCase());
 			if (keywords.some(function (keyword) {
