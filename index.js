@@ -8,7 +8,6 @@ var toArray      = require('es5-ext/array/to-array')
   , mapToArray   = require('es5-ext/object/map-to-array')
   , primitiveSet = require('es5-ext/object/primitive-set')
   , contains     = require('es5-ext/string/#/contains')
-  , inspect      = require('util').inspect
   , irc          = require('irc')
   , nodemailer   = require('nodemailer')
   , config       = require('./config')
@@ -86,7 +85,7 @@ forEach(config.irc, function (conf, url) {
 					subject: subject = "IRC: #" + name + ": '" + needle + "' mentioned",
 					body: body = history.map(function (data) {
 						return data[0] + ' => ' +  data[1];
-					}).join('\n') + '\n\n\n' + inspect(data)
+					}).join('\n') + '\n'
 				}, function (err) {
 					if (err) {
 						console.error("Could not send email: " + err);
