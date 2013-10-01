@@ -42,9 +42,21 @@ forEach(config.irc, function (conf, url) {
 	});
 
 	forEach(conf.channels, function (keywords, name) {
-		var history = [];
+		var history = [], l;
 		keywords = keywords.map(invoke('toLowerCase'));
-		client.addListener('message#' + name, function (from, message, data) {
+		client.addListener('raw', function (message) {
+			var nu;
+			if (message.command !== '470') return;
+			if (message.args[1] === ('#' + name)) {
+				// Rename
+				nu = message.args[2].slice(1);
+				console.log("Redirected", "#" + name, "to", "#" + nu);
+				client.removeListener('message#' + name, l);
+				name = nu;
+				client.addListener('message#' + name, l);
+			}
+		});
+		client.addListener('message#' + name, l = function (from, message, data) {
 			var needle, subject, body, messageContains;
 			console.log(name, format.call(new Date()) + " ", from, " => ", message);
 			history.push([from, message, data]);
