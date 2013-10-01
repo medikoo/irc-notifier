@@ -58,7 +58,8 @@ forEach(config.irc, function (conf, url) {
 		});
 		client.addListener('message#' + name, l = function (from, message, data) {
 			var needle, subject, body, messageContains;
-			console.log(name, format.call(new Date()) + " ", from, " => ", message);
+			console.log("#" + name, format.call(new Date()) + " ", from, " => ",
+				message);
 			history.push([from, message, data]);
 			if (history.length > 20) history.shift();
 			messageContains = contains.bind(message.toLowerCase());
@@ -68,6 +69,7 @@ forEach(config.irc, function (conf, url) {
 						return true;
 					}
 				})) {
+				console.log("Send email...");
 				mailer.sendMail({
 					from: config.smtp.from,
 					to: config.smtp.to,
@@ -81,10 +83,10 @@ forEach(config.irc, function (conf, url) {
 						console.error(subject + ": " + body);
 						throw new Error("Could not send emails");
 					}
-					console.log("Email succesfully sent", subject, body);
+					console.log("...Email sent");
 				});
 			}
 		});
-		console.log("Listening", name, "at", url);
+		console.log("Listening", "#" + name, "at", url);
 	});
 });
