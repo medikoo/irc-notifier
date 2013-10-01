@@ -1,15 +1,17 @@
 'use strict';
 
-var format     = require('es5-ext/date/#/format')
-  , invoke     = require('es5-ext/function/invoke')
-  , partial    = require('es5-ext/function/#/partial')
-  , forEach    = require('es5-ext/object/for-each')
-  , mapToArray = require('es5-ext/object/map-to-array')
-  , contains   = require('es5-ext/string/#/contains')
-  , inspect    = require('util').inspect
-  , irc        = require('irc')
-  , nodemailer = require('nodemailer')
-  , config     = require('./config')
+var toArray      = require('es5-ext/array/to-array')
+  , format       = require('es5-ext/date/#/format')
+  , invoke       = require('es5-ext/function/invoke')
+  , partial      = require('es5-ext/function/#/partial')
+  , forEach      = require('es5-ext/object/for-each')
+  , mapToArray   = require('es5-ext/object/map-to-array')
+  , primitiveSet = require('es5-ext/object/primitive-set')
+  , contains     = require('es5-ext/string/#/contains')
+  , inspect      = require('util').inspect
+  , irc          = require('irc')
+  , nodemailer   = require('nodemailer')
+  , config       = require('./config')
 
   , mailer;
 
@@ -17,11 +19,18 @@ mailer = nodemailer.createTransport('SMTP', config.smtp);
 format = partial.call(format, '%Y-%m-%d %H:%M:%S');
 
 forEach(config.irc, function (conf, url) {
-	var client = new irc.Client(url, conf.user, {
+	var client, ignore;
+	client = new irc.Client(url, conf.user, {
 		channels: mapToArray(conf.channels, function (keywords, name) {
 			return '#' + name + (conf.pass ? ' ' + conf.pass : '');
 		})
 	});
+	if (conf.ignore == null) {
+		ignore = primitiveSet();
+	} else {
+		ignore = primitiveSet.apply(null, toArray(conf.ignore));
+	}
+	ignore[conf.user] = true;
 
 	client.addListener('error', function (message) {
 		var subject;
@@ -62,6 +71,7 @@ forEach(config.irc, function (conf, url) {
 				message);
 			history.push([from, message, data]);
 			if (history.length > 20) history.shift();
+			if (ignore[from]) return;
 			messageContains = contains.bind(message.toLowerCase());
 			if (keywords.some(function (keyword) {
 					if (messageContains(keyword)) {
