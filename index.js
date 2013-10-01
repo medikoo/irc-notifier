@@ -65,10 +65,10 @@ forEach(config.irc, function (conf, url) {
 			}
 		});
 		client.addListener('message#' + name, l = function (from, message, data) {
-			var needle, subject, body, messageContains;
-			console.log("#" + name, format.call(new Date()) + " ", from, " => ",
+			var needle, subject, body, messageContains, now = new Date();
+			console.log("#" + name, format.call(now) + " ", from, " => ",
 				message);
-			history.push([from, message, data]);
+			history.push([now, from, message, data]);
 			if (history.length > 20) history.shift();
 			if (ignore[from]) return;
 			messageContains = contains.bind(message.toLowerCase());
@@ -84,7 +84,7 @@ forEach(config.irc, function (conf, url) {
 					to: config.smtp.to,
 					subject: subject = "IRC: #" + name + ": '" + needle + "' mentioned",
 					body: body = history.map(function (data) {
-						return data[0] + ' => ' +  data[1];
+						return format.call(data[0]) + ' ' + data[1] + ' => ' +  data[2];
 					}).join('\n') + '\n'
 				}, function (err) {
 					if (err) {
