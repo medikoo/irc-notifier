@@ -9,7 +9,7 @@ var format     = require('es5-ext/date/#/format')
   , inspect    = require('util').inspect
   , irc        = require('irc')
   , nodemailer = require('nodemailer')
-  , config     = require('../config')
+  , config     = require('./config')
 
   , mailer;
 

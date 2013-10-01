@@ -2,7 +2,6 @@
   "name": "irc-notifier",
   "version": "0.1.1",
   "description": "IRC email notifications (keywords/phrases mentions)",
-  "main": "lib/irc-notifier.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
