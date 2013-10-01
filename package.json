@@ -2,9 +2,7 @@
   "name": "irc-notifier",
   "version": "0.1.1",
   "description": "IRC email notifications (keywords/phrases mentions)",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "author": "Mariusz Nowak <medyk@medikoo.com> (http://www.medikoo.com/)",
   "repository": {
     "type": "git",
     "url": "git@github.com:medikoo/irc-notifier.git"
@@ -22,14 +20,13 @@
     "notifications",
     "watch"
   ],
-  "author": "Mariusz Nowak",
   "dependencies": {
     "es5-ext": "git://github.com/medikoo/es5-ext",
     "irc": "~0.3.6",
     "nodemailer": "~0.5.2"
   },
-  "license": "MIT",
   "scripts": {
-    "start": "node ./lib/irc-notifier.js"
-  }
+    "start": "node ./index.js"
+  },
+  "license": "MIT"
 }
