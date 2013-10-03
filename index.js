@@ -1,6 +1,7 @@
 'use strict';
 
 var toArray      = require('es5-ext/array/to-array')
+  , last         = require('es5-ext/array/#/last')
   , format       = require('es5-ext/date/#/format')
   , invoke       = require('es5-ext/function/invoke')
   , partial      = require('es5-ext/function/#/partial')
@@ -12,10 +13,14 @@ var toArray      = require('es5-ext/array/to-array')
   , nodemailer   = require('nodemailer')
   , config       = require('./config')
 
-  , mailer;
+  , mailer, msgOutput;
 
 mailer = nodemailer.createTransport('SMTP', config.smtp);
 format = partial.call(format, '%Y-%m-%d %H:%M:%S');
+
+msgOutput = function (data) {
+	return format.call(data[0]) + ' ' + data[1] + ' => ' +  data[2];
+};
 
 forEach(config.irc, function (conf, url) {
 	var client, ignore;
@@ -83,9 +88,8 @@ forEach(config.irc, function (conf, url) {
 					from: config.smtp.from,
 					to: config.smtp.to,
 					subject: subject = "IRC: #" + name + ": '" + needle + "' mentioned",
-					body: body = history.map(function (data) {
-						return format.call(data[0]) + ' ' + data[1] + ' => ' +  data[2];
-					}).join('\n') + '\n'
+					body: body = msgOutput(last.call(history)) + '\n\n----------\n\n' +
+						history.map(msgOutput).join('\n') + '\n'
 				}, function (err) {
 					if (err) {
 						console.error("Could not send email: " + err);
