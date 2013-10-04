@@ -5,6 +5,7 @@ var toArray      = require('es5-ext/array/to-array')
   , format       = require('es5-ext/date/#/format')
   , invoke       = require('es5-ext/function/invoke')
   , partial      = require('es5-ext/function/#/partial')
+  , toUint       = require('es5-ext/number/to-uint')
   , forEach      = require('es5-ext/object/for-each')
   , mapToArray   = require('es5-ext/object/map-to-array')
   , primitiveSet = require('es5-ext/object/primitive-set')
@@ -23,7 +24,10 @@ msgOutput = function (data) {
 };
 
 forEach(config.irc, function (conf, url) {
-	var client, ignore;
+	var client, ignore, logLength;
+	logLength = toUint(conf.logLength);
+	if (!logLength) logLength = 20;
+
 	client = new irc.Client(url, conf.user, {
 		channels: mapToArray(conf.channels, function (keywords, name) {
 			return '#' + name + (conf.pass ? ' ' + conf.pass : '');
@@ -74,7 +78,7 @@ forEach(config.irc, function (conf, url) {
 			console.log("#" + name, format.call(now) + " ", from, " => ",
 				message);
 			history.push([now, from, message, data]);
-			if (history.length > 20) history.shift();
+			if (history.length > logLength) history.shift();
 			if (ignore[from]) return;
 			messageContains = contains.bind(message.toLowerCase());
 			if (keywords.some(function (keyword) {
