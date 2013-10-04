@@ -7,7 +7,7 @@ var toArray      = require('es5-ext/array/to-array')
   , partial      = require('es5-ext/function/#/partial')
   , toUint       = require('es5-ext/number/to-uint')
   , forEach      = require('es5-ext/object/for-each')
-  , mapToArray   = require('es5-ext/object/map-to-array')
+  , objToArray   = require('es5-ext/object/to-array')
   , primitiveSet = require('es5-ext/object/primitive-set')
   , contains     = require('es5-ext/string/#/contains')
   , irc          = require('irc')
@@ -29,7 +29,7 @@ forEach(config.irc, function (conf, url) {
 	if (!logLength) logLength = 20;
 
 	client = new irc.Client(url, conf.user, {
-		channels: mapToArray(conf.channels, function (keywords, name) {
+		channels: objToArray(conf.channels, function (keywords, name) {
 			return '#' + name + (conf.pass ? ' ' + conf.pass : '');
 		})
 	});
