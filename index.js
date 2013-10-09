@@ -25,7 +25,7 @@ msgOutput = function (data) {
 
 forEach(config.irc, function (conf, url) {
 	var client, ignore, logLength;
-	logLength = toUint(conf.logLength);
+	logLength = toUint(config.logLength);
 	if (!logLength) logLength = 20;
 
 	client = new irc.Client(url, conf.user, {
