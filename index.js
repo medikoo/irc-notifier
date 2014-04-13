@@ -5,7 +5,7 @@ var toArray      = require('es5-ext/array/to-array')
   , format       = require('es5-ext/date/#/format')
   , invoke       = require('es5-ext/function/invoke')
   , partial      = require('es5-ext/function/#/partial')
-  , toUint       = require('es5-ext/number/to-uint')
+  , toPosInt     = require('es5-ext/number/to-pos-integer')
   , forEach      = require('es5-ext/object/for-each')
   , objToArray   = require('es5-ext/object/to-array')
   , primitiveSet = require('es5-ext/object/primitive-set')
@@ -25,7 +25,7 @@ msgOutput = function (data) {
 
 forEach(config.irc, function (conf, url) {
 	var client, ignore, logLength;
-	logLength = toUint(config.logLength);
+	logLength = toPosInt(config.logLength);
 	if (!logLength) logLength = 20;
 
 	client = new irc.Client(url, conf.user, {
