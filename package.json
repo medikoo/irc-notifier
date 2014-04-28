@@ -1,6 +1,6 @@
 {
   "name": "irc-notifier",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "IRC email notifications (keywords/phrases mentions)",
   "author": "Mariusz Nowak <medyk@medikoo.com> (http://www.medikoo.com/)",
   "keywords": [

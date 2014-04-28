@@ -1,3 +1,11 @@
+v0.2.0  --  2014.04.48
+* Update to use latest versions of dependencies
+* Move main module out of lib folder
+* Configurable number of messages that can be send with mail
+* Support redirected channels
+* Support 'ignore' option in config to ignore specific users
+* Improve logging
+
 v0.1.1  --  2012.10.10
 Fix keyword contains check (now it actually works ;-)
 
