@@ -14,9 +14,9 @@
     "url": "git@github.com:medikoo/irc-notifier.git"
   },
   "dependencies": {
-    "es5-ext": "git://github.com/medikoo/es5-ext",
+    "es5-ext": "~0.10.2",
     "irc": "~0.3.6",
-    "nodemailer": "~0.5.2"
+    "nodemailer": "~0.6.3"
   },
   "scripts": {
     "start": "node ./index.js"
