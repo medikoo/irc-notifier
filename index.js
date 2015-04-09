@@ -16,7 +16,7 @@ var toArray      = require('es5-ext/array/to-array')
 
   , mailer, msgOutput;
 
-mailer = nodemailer.createTransport('SMTP', config.smtp);
+mailer = nodemailer.createTransport(config.smtp);
 format = partial.call(format, '%Y-%m-%d %H:%M:%S');
 
 msgOutput = function (data) {
