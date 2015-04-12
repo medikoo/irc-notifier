@@ -46,7 +46,7 @@ forEach(config.irc, function (conf, url) {
 			from: config.smtp.from,
 			to: config.smtp.to,
 			subject: subject = "IRC: SERVER ERROR: " + message,
-			body: message
+			text: message
 		}, function (err) {
 			if (err) {
 				console.error("Could not send email: " + err);
@@ -92,7 +92,7 @@ forEach(config.irc, function (conf, url) {
 					from: config.smtp.from,
 					to: config.smtp.to,
 					subject: subject = "IRC: #" + name + ": '" + needle + "' mentioned",
-					body: body = msgOutput(last.call(history)) + '\n\n----------\n\n' +
+					text: body = msgOutput(last.call(history)) + '\n\n----------\n\n' +
 						history.map(msgOutput).join('\n') + '\n'
 				}, function (err) {
 					if (err) {
