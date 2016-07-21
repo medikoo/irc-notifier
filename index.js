@@ -51,10 +51,9 @@ forEach(config.irc, function (conf, url) {
 			if (err) {
 				console.error("Could not send email: " + err);
 				console.error(subject, message);
-			} else {
-				console.log("Email succesfully sent", subject, message);
+				throw err;
 			}
-			throw new Error(message);
+			console.log("Email succesfully sent", subject, message);
 		});
 	});
 
