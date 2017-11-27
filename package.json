@@ -6,7 +6,7 @@
 	"keywords": ["irc", "email", "notifications", "watch"],
 	"repository": {
 		"type": "git",
-		"url": "git@github.com:medikoo/irc-notifier.git"
+		"url": "git://github.com/medikoo/irc-notifier.git"
 	},
 	"dependencies": {
 		"es5-ext": "^0.10.37",
