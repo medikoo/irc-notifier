@@ -10,6 +10,7 @@ var toArray      = require("es5-ext/array/to-array")
   , objToArray   = require("es5-ext/object/to-array")
   , primitiveSet = require("es5-ext/object/primitive-set")
   , contains     = require("es5-ext/string/#/contains")
+  , inspect      = require("util").inspect
   , irc          = require("irc")
   , nodemailer   = require("nodemailer")
   , config       = require("./config");
@@ -38,22 +39,22 @@ forEach(config.irc, function (conf, url) {
 	}
 	ignore[conf.user] = true;
 
-	client.addListener("error", function (message) {
+	client.addListener("error", function (error) {
 		var subject;
 		mailer.sendMail(
 			{
 				from: config.smtp.from,
 				to: config.smtp.to,
-				subject: (subject = "IRC: SERVER ERROR: " + message),
-				text: message
+				subject: (subject = "IRC: SERVER ERROR: " + error),
+				text: inspect(error, { depth: Infinity })
 			},
 			function (err) {
 				if (err) {
 					console.error("Could not send email: " + err);
-					console.error(subject, message);
+					console.error(subject, error);
 					throw err;
 				}
-				console.log("Email succesfully sent", subject, message);
+				console.log("Email succesfully sent", subject, error);
 			}
 		);
 	});
