@@ -1,20 +1,25 @@
 {
-	"name": "irc-notifier",
-	"version": "0.2.0",
-	"description": "IRC email notifications (keywords/phrases mentions)",
-	"author": "Mariusz Nowak <medyk@medikoo.com> (http://www.medikoo.com/)",
-	"keywords": ["irc", "email", "notifications", "watch"],
-	"repository": {
-		"type": "git",
-		"url": "git://github.com/medikoo/irc-notifier.git"
-	},
-	"dependencies": {
-		"es5-ext": "^0.10.37",
-		"irc": "^0.5.2",
-		"nodemailer": "^4.4"
-	},
-	"scripts": {
-		"start": "node ./index.js"
-	},
-	"license": "GPL-3.0"
+  "name": "irc-notifier",
+  "version": "0.2.0",
+  "description": "IRC email notifications (keywords/phrases mentions)",
+  "author": "Mariusz Nowak <medyk@medikoo.com> (http://www.medikoo.com/)",
+  "keywords": [
+    "irc",
+    "email",
+    "notifications",
+    "watch"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/medikoo/irc-notifier.git"
+  },
+  "dependencies": {
+    "es5-ext": "^0.10.45",
+    "irc": "^0.5.2",
+    "nodemailer": "^4.6.7"
+  },
+  "scripts": {
+    "start": "node ./index.js"
+  },
+  "license": "GPL-3.0"
 }
